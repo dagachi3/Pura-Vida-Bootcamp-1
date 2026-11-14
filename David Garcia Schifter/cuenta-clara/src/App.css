@@ -278,3 +278,106 @@
     padding: 1.125rem;
   }
 }
+/* ---------- Wallet ---------- */
+
+.wallet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.wallet__titulo {
+  font-size: 1.125rem;
+  font-weight: 800;
+}
+
+.wallet__estado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-texto-suave);
+}
+
+.wallet__estado--ok {
+  font-weight: 700;
+  color: var(--color-primario-oscuro);
+}
+
+.etiqueta-red {
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  background: var(--color-primario-suave);
+  color: var(--color-primario-oscuro);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.wallet__conectada {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wallet__etiqueta {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-texto-suave);
+}
+
+.wallet__direccion {
+  padding: 0.75rem 0.875rem;
+  background: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-pequeno);
+  font-family: var(--fuente-numeros);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+/* En esta tarjeta el botón no debe estirarse a lo alto */
+.wallet .boton--principal {
+  flex: none;
+  align-self: flex-start;
+}
+
+.boton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mensajes de la wallet */
+.mensaje-wallet {
+  margin-top: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radio-pequeno);
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.mensaje-wallet a {
+  color: inherit;
+  font-weight: 700;
+}
+
+/* Cancelación y extensión ausente: aviso suave */
+.mensaje-wallet--cancelada,
+.mensaje-wallet--no-instalada {
+  background: var(--color-aviso-suave);
+  border-color: #e7c36b;
+  color: var(--color-aviso);
+}
+
+/* Otra red y errores: aviso fuerte */
+.mensaje-wallet--otra-red,
+.mensaje-wallet--error {
+  background: var(--color-error-suave);
+  border-color: #f0b4ae;
+  color: var(--color-error);
+  font-weight: 600;
+}

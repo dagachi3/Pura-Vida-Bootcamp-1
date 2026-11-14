@@ -1,8 +1,17 @@
 import { useState } from 'react'
 import { dividirGasto, formatearXlm } from './lib/dividirGasto.js'
+import { conectarWallet } from './lib/wallet.js'
 import './App.css'
 
 const CAMPOS_INICIALES = { concepto: '', total: '', personas: '' }
+
+const WALLET_INICIAL = {
+  estado: 'desconectada', // 'desconectada' | 'conectando' | 'conectada' | 'error'
+  direccion: '',
+  red: '',
+  motivo: '',
+  mensaje: '',
+}
 
 function textoStroops(cantidad) {
   return `${cantidad.toString()} ${cantidad === 1n ? 'stroop' : 'stroops'}`
@@ -12,6 +21,29 @@ export default function App() {
   const [campos, setCampos] = useState(CAMPOS_INICIALES)
   const [errores, setErrores] = useState({})
   const [resultado, setResultado] = useState(null)
+  const [wallet, setWallet] = useState(WALLET_INICIAL)
+
+  async function manejarConexion() {
+    setWallet({ ...WALLET_INICIAL, estado: 'conectando' })
+
+    const respuesta = await conectarWallet()
+
+    if (respuesta.ok) {
+      setWallet({
+        ...WALLET_INICIAL,
+        estado: 'conectada',
+        direccion: respuesta.direccion,
+        red: respuesta.red.nombre,
+      })
+    } else {
+      setWallet({
+        ...WALLET_INICIAL,
+        estado: 'error',
+        motivo: respuesta.motivo,
+        mensaje: respuesta.mensaje,
+      })
+    }
+  }
 
   function manejarCambio(evento) {
     const { name, value } = evento.target
@@ -43,6 +75,7 @@ export default function App() {
   }
 
   const hayResto = resultado !== null && resultado.restoStroops > 0n
+  const conectando = wallet.estado === 'conectando'
 
   return (
     <main className="app">
@@ -54,6 +87,70 @@ export default function App() {
           decimales.
         </p>
       </header>
+
+      <section className="tarjeta wallet" aria-label="Wallet">
+        <h2 className="wallet__titulo">Wallet</h2>
+
+        <div aria-live="polite">
+          {wallet.estado === 'conectada' ? (
+            <div className="wallet__conectada">
+              <p className="wallet__estado wallet__estado--ok">
+                Wallet conectada
+                <span className="etiqueta-red">
+                  Testnet{wallet.red ? ` · ${wallet.red}` : ''}
+                </span>
+              </p>
+              <p className="wallet__etiqueta">Dirección pública</p>
+              <p className="wallet__direccion">{wallet.direccion}</p>
+              <p className="ayuda">
+                Solo se lee tu dirección pública. No se firma ni se envía
+                ningún pago.
+              </p>
+            </div>
+          ) : (
+            <p className="wallet__estado">
+              {conectando
+                ? 'Esperando respuesta de Varial…'
+                : 'Ninguna wallet conectada.'}
+            </p>
+          )}
+
+          {wallet.estado === 'error' && (
+            <div
+              className={`mensaje-wallet mensaje-wallet--${wallet.motivo}`}
+              role="alert"
+            >
+              <p>{wallet.mensaje}</p>
+              {wallet.motivo === 'no-instalada' && (
+                <p>
+                  <a
+                    href="https://varialwallet.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Ir a varialwallet.com
+                  </a>
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+
+        {wallet.estado !== 'conectada' && (
+          <button
+            type="button"
+            className="boton boton--principal"
+            onClick={manejarConexion}
+            disabled={conectando}
+          >
+            {conectando
+              ? 'Conectando…'
+              : wallet.estado === 'error'
+                ? 'Intentar de nuevo'
+                : 'Conectar wallet'}
+          </button>
+        )}
+      </section>
 
       <form className="tarjeta formulario" onSubmit={manejarEnvio} noValidate>
         <div className="campo">
@@ -195,8 +292,8 @@ export default function App() {
       </div>
 
       <p className="aviso">
-        Esta versión solo calcula. No hay wallet conectada ni se realiza ningún
-        pago.
+        Esta versión calcula y puede leer la dirección pública de tu wallet. No
+        se realiza ningún pago.
       </p>
     </main>
   )
