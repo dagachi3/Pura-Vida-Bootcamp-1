@@ -381,3 +381,139 @@
   color: var(--color-error);
   font-weight: 600;
 }
+/* ---------- Pago ---------- */
+
+.pagar,
+.pago {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+/* Separa la tarjeta «Pagar mi parte» de la del resultado */
+.resultado + .pagar {
+  margin-top: 1.25rem;
+}
+
+.pago__titulo {
+  font-size: 1.125rem;
+  font-weight: 800;
+}
+
+.pago__titulo--ok {
+  color: var(--color-primario-oscuro);
+}
+
+.pago__etiqueta {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-texto-suave);
+}
+
+.pago__monto {
+  font-family: var(--fuente-numeros);
+  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-primario);
+  overflow-wrap: anywhere;
+}
+
+.pago__monto--pequeno {
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+}
+
+.pago__hash {
+  font-family: var(--fuente-numeros);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+/* En la revisión, las direcciones van debajo de su etiqueta y completas */
+.detalle__fila--direccion {
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detalle__fila--direccion dd {
+  text-align: left;
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+/* Campo de la dirección del destinatario */
+#destinatario {
+  font-family: var(--fuente-numeros);
+  font-size: 0.875rem;
+}
+/* ---------- Pago ---------- */
+
+.pagar,
+.pago {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+/* Separa la tarjeta «Pagar mi parte» de la del resultado */
+.resultado + .pagar {
+  margin-top: 1.25rem;
+}
+
+.pago__titulo {
+  font-size: 1.125rem;
+  font-weight: 800;
+}
+
+.pago__titulo--ok {
+  color: var(--color-primario-oscuro);
+}
+
+.pago__etiqueta {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-texto-suave);
+}
+
+.pago__monto {
+  font-family: var(--fuente-numeros);
+  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-primario);
+  overflow-wrap: anywhere;
+}
+
+.pago__monto--pequeno {
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+}
+
+.pago__hash {
+  font-family: var(--fuente-numeros);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+/* En la revisión, las direcciones van debajo de su etiqueta y completas */
+.detalle__fila--direccion {
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detalle__fila--direccion dd {
+  text-align: left;
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+/* Campo de la dirección del destinatario */
+#destinatario {
+  font-family: var(--fuente-numeros);
+  font-size: 0.875rem;
+}
