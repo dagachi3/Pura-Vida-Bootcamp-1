@@ -273,3 +273,17 @@ export async function enviarPago({ xdrFirmado }) {
     )
   }
 }
+
+// Explorador de Testnet para consultar el comprobante de un pago.
+// Solo se abre una página pública de lectura: no firma ni envía nada.
+const URL_EXPLORADOR_TESTNET = 'https://stellar.expert/explorer/testnet/tx/'
+
+/**
+ * Devuelve la URL del comprobante en Stellar Expert (Testnet), o null si el
+ * identificador no tiene formato de hash (64 caracteres hexadecimales).
+ */
+export function urlComprobante(hash) {
+  const limpio = String(hash ?? '').trim().toLowerCase()
+  if (!/^[0-9a-f]{64}$/.test(limpio)) return null
+  return `${URL_EXPLORADOR_TESTNET}${limpio}`
+}

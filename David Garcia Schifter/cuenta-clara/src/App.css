@@ -517,3 +517,12 @@
   font-family: var(--fuente-numeros);
   font-size: 0.875rem;
 }
+
+/* Enlaces con aspecto de botón (p. ej. «Ver comprobante») */
+a.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+}

@@ -6,6 +6,7 @@ import {
   prepararPago,
   firmarPago,
   enviarPago,
+  urlComprobante,
 } from './lib/pago.js'
 import './App.css'
 
@@ -203,6 +204,11 @@ export default function App() {
   )
   const datosPago = pago.datos
 
+  // Solo hay enlace si el pago está confirmado (estado 'exito') y el
+  // identificador parece un hash. En pendiente, error o cancelado no se muestra.
+  const enlaceComprobante =
+    pago.estado === 'exito' ? urlComprobante(pago.hash) : null
+
   return (
     <main className="app">
       <header className="encabezado">
@@ -374,6 +380,16 @@ export default function App() {
                 <p className="pago__etiqueta">Identificador de la transacción</p>
                 <p className="wallet__direccion">{pago.hash}</p>
                 <div className="acciones">
+                  {enlaceComprobante && (
+                    <a
+                      className="boton boton--principal"
+                      href={enlaceComprobante}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Ver comprobante en Stellar Expert
+                    </a>
+                  )}
                   <button
                     type="button"
                     className="boton boton--secundario"
@@ -382,6 +398,11 @@ export default function App() {
                     Volver al formulario
                   </button>
                 </div>
+                <p className="ayuda">
+                  Se abre una página pública de Stellar Expert (Testnet) en una
+                  pestaña nueva. Solo consulta la transacción: no firma ni
+                  envía nada.
+                </p>
               </>
             )}
 
