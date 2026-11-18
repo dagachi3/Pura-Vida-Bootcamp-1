@@ -48,7 +48,6 @@ Detalles del diseño:
 
 ## Qué no hace todavía
 
-- No genera un comprobante del pago (próxima etapa).
 - No hay backend ni contratos inteligentes.
 - No funciona en Mainnet.
 
@@ -64,8 +63,9 @@ Requisitos: Node.js y npm, y Firefox o Chrome con la extensión Varial
    https://lab.stellar.org/account/create con la red en Testnet).
 4. Crea una segunda cuenta de prueba en Stellar Lab, fondéala con Friendbot y
    copia solo su dirección pública (empieza con `G`). Esa será el destinatario.
-5. Ejecuta la aplicación (ver abajo), conecta la wallet, calcula tu parte y
-   usa «Pagar mi parte».
+5. Si el pago se confirma, aparece el botón «Ver comprobante en Stellar
+   Expert», que abre la transacción en el explorador de Testnet. Solo
+   consulta la transacción: no firma ni envía nada.
 
 Testnet se reinicia con regularidad, así que las cuentas y los saldos de prueba
 pueden desaparecer. Si pasa, vuelve a fondearlas.
