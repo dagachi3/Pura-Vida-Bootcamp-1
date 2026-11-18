@@ -43,5 +43,3 @@ Sigue estos pasos para completar tu entrega:
 6. En la descripción de tu PR, incluye tu **nombre completo**.
 
 **Video de guía para realizar la entrega:**  
-
-

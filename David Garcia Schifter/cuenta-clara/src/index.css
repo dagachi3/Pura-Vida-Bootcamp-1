@@ -1,0 +1,95 @@
+/* Estilos globales de Cuenta Clara.
+   Reemplazan por completo el diseño inicial de Vite. */
+
+:root {
+  /* Paleta */
+  --color-fondo: #f3f7f6;
+  --color-superficie: #ffffff;
+  --color-texto: #14302c;
+  --color-texto-suave: #4c6561;
+  --color-borde: #cfdedb;
+  --color-primario: #0f766e;
+  --color-primario-oscuro: #0b5a54;
+  --color-primario-suave: #e1f3f0;
+  --color-error: #b42318;
+  --color-error-suave: #fdecea;
+  --color-aviso: #8a5a00;
+  --color-aviso-suave: #fff4db;
+
+  /* Forma y sombras */
+  --radio: 14px;
+  --radio-pequeno: 10px;
+  --sombra: 0 1px 2px rgb(20 48 44 / 6%), 0 8px 24px rgb(20 48 44 / 8%);
+
+  /* Tipografía: fuentes del sistema, sin descargas externas */
+  --fuente: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --fuente-numeros: ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas,
+    'Liberation Mono', monospace;
+
+  color-scheme: light;
+  font-family: var(--fuente);
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+  font-size: 1rem;
+}
+
+/* Quita el diseño de la plantilla de Vite (ancho fijo, bordes, centrado) */
+#root {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+p,
+dl,
+dd {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+/* Foco visible para navegar con teclado */
+:focus-visible {
+  outline: 3px solid var(--color-primario);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
